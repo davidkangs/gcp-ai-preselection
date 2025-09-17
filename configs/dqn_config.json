@@ -1,0 +1,44 @@
+{
+    "model": {
+        "feature_dim": 20,
+        "action_size": 4,
+        "hidden_sizes": [
+            128,
+            64,
+            32
+        ],
+        "dropout_rate": 0.3
+    },
+    "training": {
+        "learning_rate": 0.001,
+        "batch_size": 64,
+        "gamma": 0.99,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.01,
+        "epsilon_decay": 0.995,
+        "target_update_freq": 100,
+        "memory_size": 50000
+    },
+    "actions": {
+        "0": "keep",
+        "1": "intersection",
+        "2": "curve",
+        "3": "endpoint"
+    },
+    "rewards": {
+        "correct_prediction": 10.0,
+        "wrong_prediction": -5.0,
+        "miss_important": -10.0,
+        "consistency_bonus": 5.0
+    },
+    "thresholds": {
+        "confidence": 0.7,
+        "min_distance": 20,
+        "max_points_per_category": 1000
+    },
+    "paths": {
+        "model_save_path": "models/dqn_model.pth",
+        "checkpoint_dir": "models/checkpoints",
+        "tensorboard_dir": "logs/tensorboard"
+    }
+}

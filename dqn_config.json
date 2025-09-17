@@ -1,0 +1,17 @@
+{
+    "dqn_model": {
+        "model_path": "src/learning/models/session_dqn_model.pth",
+        "confidence_threshold": 0.7,
+        "feature_dim": 20,
+        "num_classes": 5
+    },
+    "training": {
+        "default_epochs": 50,
+        "default_batch_size": 32,
+        "validation_split": 0.2
+    },
+    "session": {
+        "auto_save": true,
+        "session_dir": "sessions"
+    }
+}

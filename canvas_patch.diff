@@ -1,0 +1,28 @@
+--- a/src/ui/canvas_widget.py
++++ b/src/ui/canvas_widget.py
+@@ -103,7 +103,7 @@ class InteractiveCanvas(QGraphicsView):
+             # TM 좌표 범위 (Y축 반전 고려)
+-            tm_min_x = view_rect.left()
++            tm_min_x = view_rect.left() - 8.0
+             tm_min_y = -view_rect.bottom()  # Y 반전
+-            tm_max_x = view_rect.right()
++            tm_max_x = view_rect.right() - 8.0
+             tm_max_y = -view_rect.top()     # Y 반전
+
+@@ -144,11 +144,9 @@ class InteractiveCanvas(QGraphicsView):
+             # 이미지 크기 (고해상도)
+             img_width = min(1280, viewport_width * 2)
+             img_height = min(1280, viewport_height * 2)
+-
+-            # 바운딩 박스 방식 사용
+-            bbox = f"[{min_lon},{min_lat},{max_lon},{max_lat}]"
+-            url = (f"https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/"
+-                    f"static/{center_lon:.6f},{center_lat:.6f},{zoom}/"
+-                    f"{img_width}x{img_height}@2x?access_token={token}")
++            # 바운딩 박스 방식 사용 (8m 서쪽 오프셋 반영)
++            bbox = f"[{min_lon},{min_lat},{max_lon},{max_lat}]"
++            url = (
++                f"https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/"
++                f"static/{bbox}/{img_width}x{img_height}@2x?access_token={token}"
++            )
+             print(f"🔗 API URL: {url}")
